@@ -1,0 +1,112 @@
+{
+    // python调试scrapy
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: 当前文件",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "pixiv.py调试",
+            "type": "python",
+            "request": "launch",
+            "program": "pixiv.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "C:/Users/15256/Desktop/nowTime/sxhCrawler/图片网站"
+        },
+        {
+            "name": "seleniumChromeApi封装",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "C:/Users/15256/Desktop/nowTime/sxhCrawler/selenium封装/selenium_chrome_api"
+        },
+        {
+            "name": "笔趣阁调试",
+            "type": "python",
+            "request": "launch",
+            "program": "biquge.py", // 调试文件名称
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}/笔趣阁", // 工作目录
+        },
+        {
+            "name": "天猫调试",
+            "type": "python",
+            "request": "launch",
+            "program": "tmall_demo.py",
+            "cwd": "${workspaceFolder}/商城/淘宝国内商城/tmall",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "taobao_main.py调试",
+            "type": "python",
+            "request": "launch",
+            "program": "taobao_main.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}/商城/淘宝国内商城/taobao"
+        },
+        {
+            "name": "scrapy调试",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            // 代码运行目录
+            "cwd": "${workspaceFolder}/universityInformation/universityInformation",
+            // 解释器 
+            // "python": "${workspaceFolder}/shangyyuan/count_str/str_env/Scripts/python.exe"
+        },
+        {
+            "name": "cookie池登陆: selenium_request",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "cwd": "${workspaceFolder}/商城/1688跨境站点/selenium_request",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "淘宝详情页: selenium_request",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "cwd": "${workspaceFolder}/商城/1688跨境站点/selenium_request",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "直播: 花花直播",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceRoot}/直播/花花直播",
+            "justMyCode": true
+        },
+        {
+            "name": "test_taobao_cookie: scrapy",
+            "type": "python",
+            "request": "launch",
+            "module": "scrapy",
+            "cwd": "${workspaceRoot}/splash方案/test_taobao_cookie/test_taobao_cookie/spiders",
+            "args": [
+                "crawl",
+                "taobaotest"
+            ]
+        }
+    ]
+}
