@@ -401,5 +401,5 @@ function myFunction(arg1) {
 }
 
 // console.log(d_wangyiyun('{ "s":"世界的", "type": "1", "offset": "0", "total": "true", "limit": "30", "csrf_token": ""}',"010001","00e0b509f6259df8642dbc35662901477df22677ec152b5ff68ace615bb7b725152b3ab17a876aea8a5aa76d2e417629ec4ee341f56135fccf695280104e0312ecbda92557c93870114af6c9d05c4f7f0c3685b7a46bee255932575cce10b424d813cfe4875d3e82047b97ddef52741d546b8e289dc6935b3ece0462db0a22b8e7","0CoJUm6Qyw8W8jud"))
-console.log(myFunction('{"hlpretag": "<span class=\"s-fc7\">", "hlposttag": "</span>", "s": "\u4e16\u754c", "type": "1", "offset": 0, "total": "true", "limit": 30, "csrf_token": ""}'))
+console.log(myFunction('{"s": "世界的", "type":1, "csrf_token": ""}'))
 
