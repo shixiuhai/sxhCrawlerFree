@@ -7,31 +7,35 @@ from fastapi import FastAPI, Form, HTTPException
 from fake_useragent import UserAgent
 import time
 
-def get_ttwid():
+# 修改ttwid获取，感谢https://github.com/Johnserf-Seed/TikTokDownload/blob/main/Server/Server.py
+def gen_ttwid() -> str:
     try:
+        """生成请求必带的ttwid
+        param :None
+        return:ttwid
+        """
         url = 'https://ttwid.bytedance.com/ttwid/union/register/'
-        data = {
-            "region": "cn",
-            "aid": 1768,
-            "needFid": False,
-            "service": "www.ixigua.com",
-            "migrate_info": {"ticket": "", "source": "node"},
-            "cbUrlProtocol": "https",
-            "union": True
-        }
-
-        headers = {'Content-Type': 'application/json'}
-        response = requests.post(url, json=data, headers=headers)
-        
-        set_cookie = response.headers.get('set-cookie', '')
-        regex = re.compile(r'ttwid=([^;]+)')
-        match = regex.search(set_cookie)
-
-        return "ttwid=" + match.group(1) if match else ''
+        data = '{"region":"cn","aid":1768,"needFid":false,"service":"www.ixigua.com","migrate_info":{"ticket":"","source":"node"},"cbUrlProtocol":"https","union":true}'
+        response = requests.request("POST", url, data=data)
+        # j = ttwid  k = 1%7CfPx9ZM.....
+        for j, k in response.cookies.items():
+            tips = {
+                "status_code": "200",
+                "time": {
+                    "strftime": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
+                    "timestamp": int(round(time.time() * 1000))
+                },
+                "result": [{
+                    "headers": {
+                        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36",
+                        "cookie": "ttwid=%s" % k
+                    }
+                }]
+            }
+        return tips["result"][0]["headers"]["cookie"]
     except Exception as error:
         print(error)
-        return ''
-
+        return ""
 
 app = FastAPI()
 
