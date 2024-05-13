@@ -9,7 +9,7 @@
 3. 本代码中的示例可能仅供演示和教育目的使用。在使用示例代码时，请确保了解并遵守相关法律法规和第三方服务的条款。
 4. 仓库代码全部收集于互联网。
 5. 如果你觉得本代码涉及侵权，请联系删除，联系方式见下。
-6. 感谢 https://github.com/xishandong/crawlProject
+6. 感谢 https://github.com/xishandong/crawlProject 提供的学习
 
 如果您希望为本项目贡献代码或提交问题，请查下面联系方式。
 
