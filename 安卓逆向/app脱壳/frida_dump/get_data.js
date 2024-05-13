@@ -1,19 +1,16 @@
-Java.perform(function () {
-    // 获取 RecommendApi2 接口类
-    var RecommendApi2 = Java.use("p2474s4.RecommendApi2");
+Java.perform(function() {
+    // 获取 JSONObject 类的引用
+    var JSONObject = Java.use("org.json.JSONObject");
 
-    // hook mo193993c 方法
-    RecommendApi2.mo193993c.overload('int', 'kotlin.coroutines.Continuation').implementation = function (i, continuation) {
-        // 调用原始方法
-        var result = this.mo193993c(i, continuation);
+    // Hook JSONObject 类的 toString 方法
+    JSONObject.toString.overload().implementation = function() {
+        // 调用原始的 toString 方法并获取返回值
+        var result = this.toString();
 
-        // 打印原始结果
-        console.log("Original result:", result);
+        // 输出 JSONObject 的内容
+        console.log("JSONObject content:", result);
 
-        // 修改结果
-        // 例如，你可以在这里修改返回的 SvrEncryptedBaseBean 对象
-
-        // 返回修改后的结果
+        // 返回原始方法的返回值
         return result;
     };
 });

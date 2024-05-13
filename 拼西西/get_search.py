@@ -7,7 +7,7 @@ cookies = {
 headers = {
     'Host': 'api-shb1.pinduoduo.com',
     # 'Cookie': 'api_uid=Ci0wcGYuTo64uQBgBOjeAg==',
-    'accesstoken': 'OR7CRZ2KIZJEVKRRKSCBOKR463IIUUN4W3B5STPKPT53GMSFDZ2Q1207137',
+    'accesstoken': 'ZLYRFPXDCNO2V5RRDI2QSWKO2QLBI5TABB27BZGIDKOYZF2GATSA122e12e',
     'referer': 'Android',
     'etag': 'bshP02m0',
     'p-appname': 'pinduoduo',
@@ -31,8 +31,10 @@ params = {
     'pdduid': '7356782282865',
 }
 
-data = '{"back_search":"false","engine_version":"2.0","page_sn":"10015","source":"index","page_id":"search_result.html","size":"20","is_new_query":"1","q":"手动刮胡刀","item_ver":"lzqq","q_search":"{\\pes_req_id\\:\\1714313497006273\\,\\dpt\\:\\1\\}","install_token":"88ed8335-5f87-4ab4-8a36-d8d550c4a71d","search_met":"search_tag_change","requery":"0","list_id":"5Z7LKlm5","track_data":"refer_page_id,10002_1714312337724_1039174032","sort":"default","page":"1"}'.encode()
+data = '{"back_search":"false","engine_version":"2.0","page_sn":"10015","source":"index","page_id":"search_result.html","size":"20","is_new_query":"1","q":"电脑","item_ver":"lzqq","q_search":"{\\pes_req_id\\:\\1714313497006273\\,\\dpt\\:\\1\\}","install_token":"88ed8335-5f87-4ab4-8a36-d8d550c4a71d","search_met":"search_tag_change","requery":"0","list_id":"5Z7LKlm5","track_data":"refer_page_id,10002_1714312337724_1039174032","sort":"default","page":"1"}'.encode()
 
 response = requests.post('https://api-shb1.pinduoduo.com/search', params=params, cookies=cookies, headers=headers, data=data)
 
 print(response.json())
+with open("search.json","w+",encoding="utf-8") as f:
+    f.write(str(response.json()))
