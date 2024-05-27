@@ -1,13 +1,9 @@
 import redis
 import json
-
-import json
-
-
 class RedisDict:
-    def __init__(self, key, redis_host='localhost', redis_port=6379):
+    def __init__(self, key, redis_host='localhost', redis_port=6379,redis_password=None):
         self.redis = redis.StrictRedis(
-            host=redis_host, port=redis_port, decode_responses=True)
+            host=redis_host, port=redis_port, password=redis_password, decode_responses=True)
         self.key = key
 
     def __getitem__(self, item):
