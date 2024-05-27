@@ -90,9 +90,10 @@ if __name__ == "__main__":
     task_item=taskResults["task_id1"]
     task_item["warnData"].append({
         "a":1,
-        "b":2
+        "b":3
     })
     taskResults["task_id1"]=task_item
+    print(taskResults["task_id1"])
     
 
     # # 使用 RedisDict 类
