@@ -7,6 +7,7 @@ import random
 logging.getLogger("airtest").setLevel(logging.WARNING) 
 import json
 import os
+import adbutils
 
 poco = AndroidUiautomationPoco(
     use_airtest_input=True, screenshot_each_action=False)
@@ -37,8 +38,6 @@ def scrape_detail(element):
         title=poco(f"{PACKAGE_NAME}:id/tv_title",type="android.view.ViewGroup").attr("desc")
         print(title)
         scrape_sku()
-        #  type :  android.view.ViewGroup 
-        #  name :  com.xunmeng.pinduoduo:id/tv_title 
         poco("com.android.systemui:id/back",type="android.widget.ImageView").click()
     except Exception as error:
         print(error)
@@ -46,9 +45,7 @@ def scrape_detail(element):
 def scrape_sku():
     try:
         poco(text="发起拼单").click()
-        time.sleep(1)
-#          type :  android.widget.ImageView 
-# 	  name :  com.android.systemui:id/back 
+        time.sleep(random.randint(2,6)/3)
         poco("com.android.systemui:id/back",type="android.widget.ImageView").click()
     except Exception as error:
         print(error)
@@ -62,7 +59,7 @@ def main():
     elements = scrape_index()
     print(f"长度是多少{len(elements)}")
     while True:
-        time.sleep(random.randint(1,5)/10)
+        time.sleep(random.randint(1,5)/3)
         for element in elements:
             _, element_y = element.get_position()
             if element_y < 0.2:
@@ -75,7 +72,11 @@ def main():
             logging.debug(f"{element}")
         
 if __name__ == "__main__":
-    main()
+    # main()
+    adb = adbutils.AdbClient(host="101.66.161.3",port="10028")
+    print(adb.device())
+
+
 
 
 

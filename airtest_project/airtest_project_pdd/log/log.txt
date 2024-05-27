@@ -1,1 +1,1 @@
-{"tag": "function", "depth": 1, "time": 1715689652.9106085, "data": {"name": "connect_device", "call_args": {"uri": "android://127.0.0.1:5037/5689c9a?cap_method=ADBCAP&touch_method=MAXTOUCH&"}, "start_time": 1715689652.204609, "ret": "<Android '5689c9a'>", "end_time": 1715689652.9106085}}
+{"tag": "function", "depth": 1, "time": 1715788182.0393205, "data": {"name": "connect_device", "call_args": {"uri": "Windows:///132962"}, "start_time": 1715788181.4574685, "ret": "<Windows 132962>", "end_time": 1715788182.0393205}}
