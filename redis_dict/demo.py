@@ -3,62 +3,44 @@ import json
 
 import json
 
-class RedisNestedDict:
-    def __init__(self, host='localhost', port=6379, db=0, password=None):
-        self.client = redis.StrictRedis(host=host, port=port, db=db, password=password, decode_responses=True)
 
-    def __getitem__(self, key):
-        value = self.client.get(key)
-        if value is None:
-            raise KeyError(f'Key {key} not found')
-        return json.loads(value)
+class RedisDict:
+    def __init__(self, key, redis_host='localhost', redis_port=6379):
+        self.redis = redis.StrictRedis(
+            host=redis_host, port=redis_port, decode_responses=True)
+        self.key = key
 
-    def __setitem__(self, key, value):
-        self.client.set(key, json.dumps(value))
+    def __getitem__(self, item):
+        value = self.redis.hget(self.key, item)
+        if value is not None:
+            return json.loads(value)
+        else:
+            raise KeyError(item)
 
-    def __delitem__(self, key):
-        if not self.client.delete(key):
-            raise KeyError(f'Key {key} not found')
+    def __setitem__(self, item, value):
+        serialized_value = json.dumps(value)
+        self.redis.hset(self.key, item, serialized_value)
 
-    def __contains__(self, key):
-        return self.client.exists(key)
+    def __delitem__(self, item):
+        self.redis.hdel(self.key, item)
 
     def __len__(self):
-        return len(self.client.keys())
-
-    def keys(self):
-        return self.client.keys()
+        return self.redis.hlen(self.key)
 
     def __iter__(self):
         return iter(self.keys())
 
-    def items(self):
-        return ((key, self[key]) for key in self.keys())
+    def keys(self):
+        return self.redis.hkeys(self.key)
 
     def values(self):
-        return (self[key] for key in self.keys())
+        return [json.loads(value) for value in self.redis.hvals(self.key)]
 
-    def get(self, key, default=None):
-        try:
-            return self[key]
-        except KeyError:
-            return default
+    def items(self):
+        return [(key, json.loads(value)) for key, value in self.redis.hgetall(self.key).items()]
 
     def clear(self):
-        self.client.flushdb()
-
-    def update(self, *args, **kwargs):
-        if len(args) > 1:
-            raise TypeError(f"update expected at most 1 arguments, got {len(args)}")
-        if args:
-            other = dict(args[0])
-            for key, value in other.items():
-                self[key] = value
-        for key, value in kwargs.items():
-            self[key] = value
-
-    def __repr__(self):
-        return f"{self.__class__.__name__}({dict(self.items())})"
+        self.redis.delete(self.key)
 
 # # 设置键值对
 # redis_dict["a"] = 42
@@ -84,19 +66,44 @@ class RedisNestedDict:
 # # 删除键 a
 # del redis_dict["a"]
 
+
 # # 检查键 a 是否存在
 # print("a" in redis_dict)  # 输出: FalsWe
 if __name__ == "__main__":
+    taskResults = RedisDict("taskResult", "127.0.0.1", 6379)
+    taskResults["task_id1"] = {
+        "freqncy": 16,
+        "passCount": 8,
+        "status": 3,
+        "type": 2,
+        "warnCount": 1,
+        "warnData": [
+            {
+                "mediaUrl": "/media-scan-audio/fff1799284b7452e/output5.wav",
+                "warnFileType": 2,
+                "warnMessage": "说的,",
+                "warnType": 5
+            }
+        ],
+        "warnStatus": 2
+    }
+    task_item=taskResults["task_id1"]
+    task_item["warnData"].append({
+        "a":1,
+        "b":2
+    })
+    taskResults["task_id1"]=task_item
+    
 
-    # 使用 RedisDict 类
-    redis_dict = RedisNestedDict()
-    a=redis_dict["abc"]={"a":1,"c":[1,2,3,4],"d":{"a":1,"c":2}}
-    # a["c"]=3
+    # # 使用 RedisDict 类
+    # redis_dict = RedisNestedDict()
+    # a=redis_dict["abc"]={"a":1,"c":[1,2,3,4],"d":{"a":1,"c":2}}
+    # # a["c"]=3
+    # # print(a)
+    # item = a["d"]
+    # item["a"]=7
     # print(a)
-    item = a["d"]
-    item["a"]=7
-    print(a)
-    a["c"]=[1,35]
-    print(a)
-    a.update({"e":3})
-    print(a)
+    # a["c"]=[1,35]
+    # print(a)
+    # a.update({"e":3})
+    # print(a)
