@@ -5,6 +5,8 @@
 ```
 # 运行frida-server
 .\adb5\adb.exe connect 127.0.0.1:60001
+.\adb5\adb.exe push ./frida-server-16.1.10-android-x86 /data/local/tmp
+.\adb5\adb.exe pull ./frida-server-16.1.10-android-x86 /data/local/tmp
 .\adb5\adb.exe  shell     
 cd /data/local/tmp
 ./frida-server-16.1.10-android-x86  & 
