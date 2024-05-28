@@ -18,7 +18,7 @@ cd /data/local/tmp
 ```
 frida 热注入
 通常使用 Frida 客户端直接连接到目标应用程序，并使用 attach 方法将 JavaScript 代码注入到目标进程中。
-frida -U -f com.tencent.mm -l script.js
+frida -U -f com.tencent.mm -l hooks.js
 
 frida 冷注入
 无法对已经运行的应用程序进行冷注入，需要等待目标应用程序重新启动或系统重启。
