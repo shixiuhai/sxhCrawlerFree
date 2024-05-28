@@ -9,6 +9,7 @@
 .\adb5\adb.exe push .\9d4a1b5a.0 /system/etc/security/cacerts/ # 上传证书到系统目录
 
 .\adb5\adb.exe push ./frida-server-16.1.10-android-x86 /data/local/tmp
+.\adb5\adb.exe push ./frida-server-16.2.4-android-x86_64 /data/local/tmp # 上次server到frida-server
 .\adb5\adb.exe  shell     
 cd /data/local/tmp
 ./frida-server-16.1.10-android-x86  & 
