@@ -5,7 +5,7 @@
 ```
 # 运行frida-server
 .\adb5\adb.exe connect 127.0.0.1:60001
-.\adb5\adb.exe connect 127.0.0.1:62025 # 连接安卓12模拟器
+.\adb5\adb.exe connect 127.0.0.1:62026 # 连接安卓12模拟器
 .\adb5\adb.exe shell
 mount -o remount,rw /system # 设置证书写入
 exit
@@ -21,6 +21,7 @@ chmod 644 /system/etc/security/cacerts/9d4a1b5a.0
 .\adb5\adb.exe push ./frida-server-16.2.4-android-x86_64 /data/local/tmp # 上次server到frida-server
 .\adb5\adb.exe  shell     
 cd /data/local/tmp
+chmod +x frida-server-16.2.4-android-x86_64
 ./frida-server-16.1.10-android-x86  & 
 nohup ./frida-server-16.2.4-android-x86_64 &
 ```
