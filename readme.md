@@ -15,6 +15,8 @@
 
 ## 部分浏览器动态渲染项目
 1. https://github.com/shixiuhai/rendered-by-playwright
+## scrapy爬虫脚手架
+1. https://github.com/shixiuhai/scrapySpiderRedis
 ## 联系方式
 
 如果您有任何问题、建议或反馈，请联系作者：[15256728901@163.com,yuchajia@gmail.com]
