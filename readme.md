@@ -13,7 +13,7 @@
 
 如果您希望为本项目贡献代码或提交问题，请查下面联系方式。
 
-## 部分浏览器动态渲染项目
+## 基于playwright实现的览器动态渲染项目
 1. https://github.com/shixiuhai/rendered-by-playwright
 ## scrapy爬虫脚手架
 * 基础封装都已经完成 https://github.com/shixiuhai/scrapySpiderRedis
