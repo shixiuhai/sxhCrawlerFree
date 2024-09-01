@@ -1,0 +1,24 @@
+
+# 导出cookies 使用 EditThisCookie，模式使用name=value，导出格式选择JSON格式。
+# 导出的cookies最后需要拼接 domain=.baidu.com;
+# BDDUS是必须的
+
+from DrissionPage import ChromiumPage, ChromiumOptions
+from DrissionPage import SessionOptions
+# 使用无头模式
+# co1 = ChromiumOptions().headless().set_local_port(9224).set_user_data_path('ceshi')
+co1 = ChromiumOptions().set_local_port(9224).set_user_data_path('ceshi')
+co1.add_extension(r'extension\BHCHDCEJHOHFMIGJAFBAMPOGMAANBFKG_0_6_2_0')
+
+# co2 = ChromiumOptions().set_local_port(9333).set_user_data_path('data2')
+page1 = ChromiumPage(co1)
+# 需要完整的cookies信息，否则无法登录
+# cookies = "1-TVhUZGN1a3pVdnRtSVFBQUFBJCQAAAAAAAAAAAEAAABKRYfOc2t5yrfQ47V0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADPF02YzxdNmZ;csrfToken=Gqdi5ozSp8vQprrsgkKISV61; BAIDUID=4D2AEBFEBD962929CC37745D4F4CC954:FG=1; BAIDUID_BFESS=4D2AEBFEBD962929CC37745D4F4CC954:FG=1; ppfuid=FOCoIC3q5fKa8fgJnwzbE67EJ49BGJeplOzf+4l4EOvDuu2RXBRv6R3A1AZMa49I27C0gDDLrJyxcIIeAeEhD8JYsoLTpBiaCXhLqvzbzmvy3SeAW17tKgNq/Xx+RgOdb8TWCFe62MVrDTY6lMf2GrfqL8c87KLF2qFER3obJGn/QJMAwAPnqrAi45EBm1RGGEimjy3MrXEpSuItnI4KD1FQeumXSeLSTWINTejAYSJayTOp/iXH6cOn1pNRS4LOHJkE5U8I9pdPl9Ekr8tZwtJGgA1IWuwdWQ6HGpfvkACrc6cZOQiWpdWZFfM9cCLuTBuECl+tiP++NCHKpXEMdWH1SPBXDyoMbf9Ga3EX3JDllG3LLaJS+YatvJxowwQ82dM1L+ksxZx66zR7vnv9Q9VIPT58cXf+CPR+1MXHHF0ZicwLx3tTw8w2MT/zIqkrnpA138y5xkDKVElvf8b84tlnS76Auv/aSBPLro5jnYXpgmswaScc6DNWb34jFj0X3tdRE0uuHuqiYa5BClFS2V0TCorKi4CobgR419xWaX8IKLJiaNNLOShWdZdlQO2DXXVxcinzKHqUvWTYx45jsiUVlY78AHQGol6CJLQQ8Q797MShlazvdSwPXgJP5z0uMJp9L+3x/Y2GGhW5sit55kwqfnfIy0c7y6uGqwOC6mwJ13AUairLDWhe5SwH+f9kx+4rjNadQYRXY62cs4wa6vu3FNhnx0vECH7/RD7jOBJLDhq1UtNv56Q3jqjE2BcWCvtWm4FS1pKgV7jA7bz+o/3v/z9jF3ssIgTQ4JGa6ZtsBAiZVqRumDq+zV3cirOdalgjfdDmOpvo6TsQUOMAzrtNSRMEGREm8qOjoaqrQ87P+ZDbYZPDEQGdhuxHTXO3hBIff0gEU12HeI7pEo19FIvRdU+GREMeFJm+SZWPgRTwO3iWxB8Ee9dlkirWNvZXbOKdU8pcj6jKZvtSsXYj5kR3pU7nQKZo/4kP9XycIr+RrNirXjqGn/ZchYKTL75C9Bq7zt2A9A8E851l8QtBoQFIuWEGY3DMQGzE4fLtBnD2IBA1xgIrbF95h/aKYBNVXdvBhoLwXhcnXaiqXEpcvFQlonIv85FfaVbfEoKujQX2IBA1xgIrbF95h/aKYBNVh6Y0NjEKZ13xldTgKDiG2QRBJFTPsviSSEvgLGRO3YgGOv+/I3nwGp9q5hLF8/07goRUnieOy9WY3CCu1FKQrRjzN0p0oKCdLZtSse5gEkNbHhSGlEKo+S0ciyUHoRYU; ndut_fmt=AE0711C1447FB2560914A5B23E12A8D0B3A1ABA1DF528B2C0002872C4E30B650;domain=.baidu.com"
+
+# cookies = 'aYvbKxpumvM=;domain=.baidu.com'
+cookies = 'ab_sr=1FdG8cNwRVBzDhJ1FW1HXpWR6xg1rmCzjog/Lth/2c=;domain=.baidu.com'
+page1.set.cookies(cookies) # 设置cookie
+page1.get('https://pan.baidu.com')
+page1.refresh() # 刷新页面
+page1.ele('#qrcodeLogin-sure').click()
+# page1.quit() # 退出浏览器   

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      /* scrollbar */
+      /* BEM */
+      body,
+      dl,
+      dd,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      form {
+        margin: 0;
+      }
+
+      p:focus,
+      span:focus,
+      a:focus,
+      div:focus {
+        outline: none;
+      }
+
+      ol,
+      ul,
+      input,
+      button {
+        margin: 0;
+        padding: 0;
+      }
+
+      ol,
+      ul {
+        list-style: none;
+      }
+
+      body,
+      input,
+      textarea,
+      button {
+        font-family: "microsoft yahei", -apple-system, "PingFang SC", "simsun",
+          Arial, sans-serif;
+        font-size: 12px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body {
+        word-wrap: break-word;
+      }
+
+      a {
+        text-decoration: none;
+      }
+      a:focus {
+        outline: 0;
+      }
+
+      button {
+        cursor: pointer;
+      }
+      button:focus {
+        outline: 0;
+      }
+
+      table {
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+
+      i {
+        font-style: normal;
+      }
+
+      html {
+        color: #4d4d4d;
+        background: #ebebe8;
+      }
+
+      .setting-plugin {
+        margin: 100px auto;
+        width: 600px;
+        background: #fff;
+      }
+      .setting-plugin .setting-plugin__header {
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        border-bottom: solid 1px #f5f5f5;
+      }
+      .setting-plugin .setting-plugin__header h1 {
+        font-weight: bold;
+        font-size: 13px;
+      }
+
+      .setting-plugin__body {
+        padding: 0 48px 0 36px;
+      }
+      .setting-plugin__body li {
+        display: flex;
+      }
+      .setting-plugin__body li .title {
+        flex-shrink: 0;
+        width: 86px;
+        margin-right: 40px;
+        line-height: 40px;
+        text-align: right;
+      }
+      .setting-plugin__body .checkbox {
+        display: inline-flex;
+        align-items: center;
+        height: 40px;
+        user-select: none;
+      }
+      .setting-plugin__body .checkbox .checkbox__inner {
+        position: relative;
+        margin-right: 12px;
+        width: 14px;
+        height: 14px;
+        background: #fff;
+        border: solid 1px #e6e6e6;
+        border-radius: 3px;
+        -webkit-appearance: none;
+        user-select: none;
+      }
+      .setting-plugin__body .checkbox .checkbox__inner:focus {
+        outline: none;
+      }
+      .setting-plugin__body .checkbox .checkbox__inner:before {
+        position: absolute;
+        top: 3px;
+        left: 2px;
+        width: 7px;
+        height: 3px;
+        border-left: solid 2px #3f85ff;
+        border-bottom: solid 2px #3f85ff;
+        transform: rotate(-45deg) scale(0);
+        transition: 0.1s;
+        content: "";
+      }
+      .setting-plugin__body .checkbox .checkbox__inner:checked {
+        background: #fff;
+      }
+      .setting-plugin__body .checkbox .checkbox__inner:checked:before {
+        transform: rotate(-45deg) scale(1);
+      }
+      .setting-plugin__body .checkbox .checkbox__inner:hover {
+        border-color: #3f85ff;
+      }
+      .setting-plugin__body .checkbox .checkbox__inner:focus {
+        outline: none;
+      }
+      .setting-plugin__body .checkbox.is-disabled {
+        pointer-events: none;
+      }
+      .setting-plugin__body .checkbox.is-disabled .checkbox__inner {
+        background: #f1f1f1;
+      }
+      .setting-plugin__body
+        .checkbox.is-disabled
+        .checkbox__inner:checked:before {
+        border-color: #ccc;
+      }
+      .setting-plugin__body .form {
+        display: flex;
+        align-items: center;
+      }
+      .setting-plugin__body .input {
+        margin-left: 6px;
+        width: 120px;
+        height: 30px;
+        text-indent: 6px;
+        color: #4d4d4d;
+        border: 1px solid #e6e6e6;
+        border-radius: 4px;
+        vertical-align: -5px;
+      }
+      .setting-plugin__body .input--small {
+        margin-right: 6px;
+        width: 60px;
+      }
+      .setting-plugin__body .input:focus {
+        outline: unset;
+        border: 1px solid #3f85ff;
+      }
+      .setting-plugin__body .input.is-disabled {
+        color: #b3b3b3;
+        background: #f8f8f8;
+      }
+      .setting-plugin__body .type-box {
+        margin: 12px 0;
+        box-sizing: border-box;
+      }
+      .setting-plugin__body .type-box .textarea {
+        padding: 8px;
+        width: 382px;
+        height: 80px;
+        border: 1px solid #e6e6e6;
+        border-radius: 4px;
+        box-sizing: border-box;
+        resize: none;
+      }
+      .setting-plugin__body .type-box .textarea:focus {
+        border-color: #3f85ff;
+        outline: none;
+      }
+      .setting-plugin__body .type-box .textarea:disabled {
+        background: #f8f8f8;
+      }
+      .setting-plugin__body button {
+        margin-top: 6px;
+        width: 72px;
+        height: 30px;
+        line-height: 30px;
+        color: #fff;
+        background: #3f85ff;
+        border-radius: 4px;
+        border: 0;
+        outline: none;
+        transition: background 0.2s;
+      }
+      .setting-plugin__body button:hover {
+        background: #266ce4;
+      }
+      .setting-plugin__body button.is-disabled {
+        color: #999;
+        background: #eee;
+        cursor: default;
+      }
+      .setting-plugin__body button.button-cencel {
+        line-height: 28px;
+        color: #3f85ff;
+        background: transparent;
+        border: solid 1px #3f85ff;
+        box-sizing: border-box;
+      }
+      .setting-plugin__body .text {
+        line-height: 40px;
+      }
+      .setting-plugin__body .text a {
+        margin: 0 3px;
+        color: #3f85ff;
+        text-decoration: underline;
+      }
+
+      .setting-plugin__footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+        height: 72px;
+        border-top: solid 1px #e6e6e6;
+      }
+      .setting-plugin__footer a {
+        display: block;
+        width: 72px;
+        height: 24px;
+        background: url(data:image/png;base64,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);
+        background-size: 100% auto;
+      }
+      .setting-plugin__footer img {
+        width: 100%;
+        height: 24px;
+      }
+    </style>
+    <title>迅雷下载支持-高级设置</title>
+  </head>
+  <body>
+    <div class="setting-plugin" style="display: none">
+      <div class="setting-plugin__header">
+        <h1>高级设置</h1>
+      </div>
+      <div class="setting-plugin__body">
+        <ul>
+          <li>
+            <span class="title">在线视频检测</span>
+
+            <div class="form">
+              <label class="checkbox">
+                <input
+                  id="take-over-video-switch"
+                  type="checkbox"
+                  class="checkbox__inner"
+                />
+                <span class="checkbox__label">开启</span>
+              </label>
+            </div>
+          </li>
+          <li>
+            <span class="title">批量下载快捷键</span>
+            <div class="form">
+              <label class="checkbox">
+                <input
+                  id="multi-sel-switch"
+                  type="checkbox"
+                  class="checkbox__inner"
+                  checked
+                />
+                <span class="checkbox__label">开启</span>
+              </label>
+              <input
+                class="input is-disabled"
+                disabled
+                type="text"
+                value="Shift+D"
+              />
+            </div>
+          </li>
+          <li id="monitor-exts-li">
+            <span class="title">接管文件类型</span>
+            <div class="type-box">
+              <textarea
+                id="monitor-exts-textarea"
+                class="textarea"
+                disabled
+              ></textarea>
+              <button id="edit-monitor-exts-btn" class="button-edit">
+                编辑
+              </button>
+              <button
+                style="display: none"
+                id="edit-cancel-btn"
+                class="button-cencel"
+              >
+                取消
+              </button>
+            </div>
+          </li>
+          <li>
+            <span class="title">反馈建议</span>
+            <p class="text">
+              对这个插件不满意吗？点击<a id="feed-back" href="javascript:;"
+                >这里</a
+              >给我们一些建议吧。
+            </p>
+          </li>
+        </ul>
+      </div>
+      <div class="setting-plugin__footer">
+        <a href="https://www.xunlei.com" target="_ablank" title="迅雷"></a>
+      </div>
+    </div>
+
+    <script src="./js/xl-options.js"></script>
+  </body>
+</html>

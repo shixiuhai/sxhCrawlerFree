@@ -1,0 +1,32 @@
+{
+   "action": {
+      "default_icon": "images/icon19_normal.png",
+      "default_popup": "popup.html",
+      "default_title": "迅雷Chrome支持"
+   },
+   "background": {
+      "service_worker": "background.js"
+   },
+   "content_scripts": [ {
+      "all_frames": true,
+      "css": [ "js/xl-content.css" ],
+      "js": [ "js/xl-content.js" ],
+      "matches": [ "http://*/*", "https://*/*", "ftp://*/*" ],
+      "run_at": "document_start"
+   } ],
+   "default_locale": "zh_CN",
+   "description": "__MSG_description__",
+   "host_permissions": [ "\u003Call_urls>", "http://*/*", "https://*/*" ],
+   "icons": {
+      "128": "images/install_logo.png",
+      "16": "images/menu_logo.png",
+      "48": "images/extension_logo.png"
+   },
+   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDEa5DG04lhgzzm3gRSXPPOZOv6ZXnzQrBv+rjUE/dL5br9Duh1kbwGQJCO4QMDvD1usf6FoXDsuvZwYzH6lg1pLI7m/wmQC3NQURHQ7J5zAy7VY0F7qSVqclcpRKY2k00vcqxok6lota3Z1QxUVUwWc9VUfr4gRUeQa4KlEsXzGwIDAQAB",
+   "manifest_version": 3,
+   "name": "__MSG_name__",
+   "options_page": "options.html",
+   "permissions": [ "contextMenus", "cookies", "tabs", "webRequest", "downloads", "nativeMessaging", "storage", "scripting" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "3.32"
+}
