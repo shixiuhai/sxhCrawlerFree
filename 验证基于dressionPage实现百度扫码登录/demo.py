@@ -7,7 +7,7 @@ from DrissionPage import ChromiumPage, ChromiumOptions
 from DrissionPage import SessionOptions
 # 使用无头模式
 # co1 = ChromiumOptions().headless().set_local_port(9224).set_user_data_path('ceshi')
-co1 = ChromiumOptions().set_local_port(9224).set_user_data_path('ceshi')
+co1 = ChromiumOptions().set_local_port(9224).set_user_data_path('ceshi_baidu')
 co1.add_extension(r'extension\BHCHDCEJHOHFMIGJAFBAMPOGMAANBFKG_0_6_2_0')
 
 # co2 = ChromiumOptions().set_local_port(9333).set_user_data_path('data2')
