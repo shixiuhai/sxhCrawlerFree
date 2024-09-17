@@ -2,11 +2,9 @@
 # 导出cookies 使用 EditThisCookie，模式使用name=value，导出格式选择JSON格式。
 # 导出的cookies最后需要拼接 domain=.baidu.com;
 # BDDUS是必须的
-from flask import Flask,request
-import json
-import os
+from flask import Flask,request,jsonify
 from DrissionPage import ChromiumPage, ChromiumOptions
-from DrissionPage import SessionOptions
+# co1 = ChromiumOptions().headless().set_local_port(9224).set_user_data_path('ceshi')
 co1 = ChromiumOptions().set_local_port(9224).set_user_data_path('ceshi_baidu')
 co1.add_extension(r'extension\BHCHDCEJHOHFMIGJAFBAMPOGMAANBFKG_0_6_2_0')
 app = Flask(__name__)
@@ -22,9 +20,9 @@ def login_baidu():
         page1.refresh() # 刷新页面
         page1.ele('#qrcodeLogin-sure').click()
         page1.quit() # 退出浏览器
-        return {'message': 'success',"status": 200} 
+        return jsonify({'message': 'success',"status": 200})
     else:
-        return {'message': 'error',"status": 400} 
+        return jsonify({'message': 'error',"status": 400}) 
 
 if __name__ == '__main__':
     app.run(debug=True,port=5000)
