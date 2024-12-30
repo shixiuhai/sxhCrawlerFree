@@ -1,7 +1,5 @@
-# www.uuks5.com 网站爬取下载
 import requests
 from bs4 import BeautifulSoup
-import random
 import time
 import re
 
@@ -61,10 +59,9 @@ chapterList = detail_soup.find("ul",id="chapterList")
 links =  ["https://www.uuks5.com/" + li.get("href") for li in chapterList.find_all("a")]
 sorted_links = sorted(links, key=lambda x: int(re.search(r'\d+', x).group()))
 
-for link in sorted_links:
+def spider_content(url,session,wb):
     try:
-        chapter_text = session.get(url=link).text
-        time.sleep(time_sleep)
+        chapter_text = session.get(url=url).text
         chapter_soup = BeautifulSoup(chapter_text,"html.parser")
         title = chapter_soup.find('h1')
         print("标题:", title.get_text(strip=True))  # 打印 h1 标签中的标题内容
@@ -76,6 +73,17 @@ for link in sorted_links:
                 wb.write(item_p.getText()+"\n")
     except Exception as error:
         print(f"{link}出现了错误，错误原因是:{error}")
+        
+# 遍历所有章节开始爬取
+for link in sorted_links:
+    try:
+        time.sleep(time_sleep)
+        spider_content(link,session,wb)
+    except Exception as error:
+        print(f"{link}出现了错误，错误原因是:{error}")
+        cookies=parse_cookie_string(input("请更换cookie字符串继续爬取："))
+        session.cookies.update(cookies) # 更新cloudflare的cookie
+        spider_content(link,session,wb)
 wb.close()
 
             
