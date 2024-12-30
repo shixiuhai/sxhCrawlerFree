@@ -1,4 +1,3 @@
-# python版本3.12.4
 import requests
 from bs4 import BeautifulSoup
 import time
@@ -45,35 +44,34 @@ def parse_cookie_string(cookie_string):
 # 构造一共长连session
 session=requests.Session()
 session.headers.update(headers) # 更新session头
-
-detail_url = input("请输入详情业url（例如 https://www.uuks5.com/book/239411）：")
 cookies=parse_cookie_string(input("请输入cookie字符串："))
+detail_url = input("请输入详情业url（例如 https://www.uuks5.com/book/239411）：")
+chater_number = int(input("请输入你要从第几章爬取：例如(688): "))
+if chater_number<1:
+    chater_number=1
 session.cookies.update(cookies) # 更新cloudflare的cookie
 
 save_file=input("请输入要保存的小说文件名称：")
 time_sleep=int(input("请输入每章节爬取延迟时间秒(例如1): "))
 
-wb=open(f"./{save_file}.txt","w",encoding='utf-8')
+wb=open(f"./{save_file}.txt","a",encoding='utf-8')
 detail_html=session.get(url=detail_url).text
 detail_soup=BeautifulSoup(detail_html,"html.parser") 
 chapterList = detail_soup.find("ul",id="chapterList")
 links =  ["https://www.uuks5.com/" + li.get("href") for li in chapterList.find_all("a")]
 sorted_links = sorted(links, key=lambda x: int(re.search(r'\d+', x).group()))
-
+sorted_links=sorted_links[chater_number-1::]
 def spider_content(url,session,wb):
-    try:
-        chapter_text = session.get(url=url).text
-        chapter_soup = BeautifulSoup(chapter_text,"html.parser")
-        title = chapter_soup.find('h1')
-        print("标题:", title.get_text(strip=True))  # 打印 h1 标签中的标题内容
-        wb.write(title.get_text(strip=True)+"\n")
-        txt_content_div = chapter_soup.find('div', id='TextContent')
-        if txt_content_div:
-            items_p=txt_content_div.find_all("p")
-            for item_p in items_p:
-                wb.write(item_p.getText()+"\n")
-    except Exception as error:
-        print(f"{link}出现了错误，错误原因是:{error}")
+    chapter_text = session.get(url=url).text
+    chapter_soup = BeautifulSoup(chapter_text,"html.parser")
+    title = chapter_soup.find('h1')
+    print("标题:", title.get_text(strip=True))  # 打印 h1 标签中的标题内容
+    wb.write(title.get_text(strip=True)+"\n")
+    txt_content_div = chapter_soup.find('div', id='TextContent')
+    if txt_content_div:
+        items_p=txt_content_div.find_all("p")
+        for item_p in items_p:
+            wb.write(item_p.getText()+"\n")
         
 # 遍历所有章节开始爬取
 for link in sorted_links:
