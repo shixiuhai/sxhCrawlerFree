@@ -1,3 +1,4 @@
+# python版本3.12.4
 import requests
 from bs4 import BeautifulSoup
 import time
