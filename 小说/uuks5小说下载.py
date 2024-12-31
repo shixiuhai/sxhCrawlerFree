@@ -2,8 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 import time
 import re
-
-
 # cookie 字符串转字典
 def parse_cookie_string(cookie_string):
     """
@@ -17,8 +15,6 @@ def parse_cookie_string(cookie_string):
         key, value = item.split("=", 1)  # 仅分割第一个等号，避免值中包含等号的问题
         cookies[key] = value
     return cookies
-
-
 version=input("请输入浏览器大版本号（例如79）: ")
 # 设置请求头
 headers = {
@@ -53,9 +49,9 @@ chater_number = int(input("请输入你要从第几章爬取：例如(688): "))
 if chater_number<1:
     chater_number=1
 session.cookies.update(cookies) # 更新cloudflare的cookie
-
 save_file=input("请输入要保存的小说文件名称：")
 time_sleep=int(input("请输入每章节爬取延迟时间秒(例如1): "))
+
 
 wb=open(f"./{save_file}.txt","a",encoding='utf-8')
 detail_html=session.get(url=detail_url).text
@@ -64,6 +60,7 @@ chapterList = detail_soup.find("ul",id="chapterList")
 links =  ["https://www.uuks5.com/" + li.get("href") for li in chapterList.find_all("a")]
 sorted_links = sorted(links, key=lambda x: int(re.search(r'\d+', x).group()))
 sorted_links=sorted_links[chater_number-1::]
+
 def spider_content(url,session,wb):
     chapter_text = session.get(url=url).text
     chapter_soup = BeautifulSoup(chapter_text,"html.parser")
@@ -85,7 +82,12 @@ for link in sorted_links:
         print(f"{link}出现了错误，错误原因是:{error}")
         cookies=parse_cookie_string(input("请更换cookie字符串继续爬取："))
         session.cookies.update(cookies) # 更新cloudflare的cookie
-        spider_content(link,session,wb)
+        try:
+            time.sleep(time_sleep)
+            spider_content(link,session,wb)
+        except Exception as error:
+            print(f"{link}出现了错误，错误原因是:{error}")
+            continue
 wb.close()
 
             
