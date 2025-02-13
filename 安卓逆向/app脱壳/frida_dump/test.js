@@ -1,0 +1,1 @@
+let Scheme = Java.use("com.cdo.oaps.ad.Launcher$Scheme");

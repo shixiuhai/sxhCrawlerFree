@@ -9,11 +9,19 @@
 3. 本代码中的示例可能仅供演示和教育目的使用。在使用示例代码时，请确保了解并遵守相关法律法规和第三方服务的条款。
 4. 仓库代码全部收集于互联网。
 5. 如果你觉得本代码涉及侵权，请联系删除，联系方式见下。
+6. 感谢 https://github.com/xishandong/crawlProject 提供的学习
 
 如果您希望为本项目贡献代码或提交问题，请查下面联系方式。
+
+## 基于playwright实现的览器动态渲染项目
+* https://github.com/shixiuhai/rendered-by-playwright
+## scrapy爬虫脚手架
+* 基础封装都已经完成 https://github.com/shixiuhai/scrapySpiderRedis
+* 完成了对接selenium和自定义的动态渲染playwright框架
+* 添加了一些基本demo在spidersDemo里
 ## 联系方式
 
-如果您有任何问题、建议或反馈，请联系作者：[15256728901@163.com,wosuoai@gmail.com]
+如果您有任何问题、建议或反馈，请联系作者：[15256728901@163.com,yuchajia@gmail.com]
 
 
 
@@ -21,4 +29,4 @@
 * 项目外部描述是中文
 * 函数，代码文件名，函数方法名采用下划线命名法
 * 类采用驼峰命名法
-* 变量名采用驼峰命名法，主要平常很多变量和java交互比较多，两边统一可读性更强
+* 之前的变量名都是驼峰命名法，后续代码python都使用下划线命名法。

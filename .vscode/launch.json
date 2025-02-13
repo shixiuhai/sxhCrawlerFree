@@ -6,9 +6,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: 当前文件",
+            "name": "调试网易云在线搜索",
             "type": "python",
             "request": "launch",
+            "cwd": "${workspaceFolder}/网易云/wangyiyun_search",
             "program": "${file}",
             "console": "integratedTerminal",
             "justMyCode": true
