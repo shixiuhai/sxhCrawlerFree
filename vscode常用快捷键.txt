@@ -1,0 +1,49 @@
+在下方插入行	Ctrl + Enter	
+
+在上方插入行	Ctrl + Shift + Enter	
+
+复制当前行	Alt + Shift + Down	
+
+删除当前行	Ctrl + Shift + K	
+
+另存为	Ctrl + Shift + S	
+
+关闭文件	Ctrl + W	
+
+新建文件	Ctrl + N
+
+关闭所有文件	Ctrl + K, Ctrl + W
+
+搜索	Ctrl + F
+
+打开文件	Ctrl + O
+
+注释行	Ctrl + /	F
+
+多行注释 Shift + Alt + A	
+
+移动当前行	Alt + Up/Down
+
+选中当前行	Ctrl + L
+
+转到行号	Ctrl + G
+
+列选择	Shift + Alt + 拖动
+
+放大/缩小	Ctrl + = / -
+
+安装扩展	Ctrl + Shift + X
+
+扩展管理	Ctrl + Shift + P → 输入 "Extensions"
+
+打开命令面板	Ctrl + Shift + P
+
+上一个文件	Ctrl+Tab
+
+下一个文件	Ctrl+Shift+Tab
+
+
+
+
+
+
