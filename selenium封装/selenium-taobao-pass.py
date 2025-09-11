@@ -103,16 +103,35 @@ def human_like_scroll(driver, times=5):
         time.sleep(random.uniform(0.5, 1.5))
 
 def human_like_mouse(driver, element):
-    """随机移动鼠标到元素上"""
+    """随机移动鼠标到元素上，模拟人类鼠标操作"""
+    
+    # 创建一个 ActionChains 对象，用于在浏览器上执行复杂的鼠标键盘操作
     actions = ActionChains(driver)
+    
+    # 获取目标元素的尺寸（宽度和高度）
     size = element.size
+    
+    # 随机生成鼠标在元素内部的偏移位置
+    # offset_x 范围是 1 到 元素宽度-1（防止超出元素边界）
     offset_x = random.randint(1, max(1, size['width']-1))
+    
+    # offset_y 范围是 1 到 元素高度-1（防止超出元素边界）
     offset_y = random.randint(1, max(1, size['height']-1))
+    
+    # 将鼠标移动到元素的随机偏移位置上
+    # 这里 move_to_element_with_offset 可以指定元素的相对坐标
     actions.move_to_element_with_offset(element, offset_x, offset_y)
-    # 小幅抖动，模拟真实鼠标轨迹
+    
+    # 为了模拟人类操作的微小抖动，进行 1~3 次随机小幅移动
     for _ in range(random.randint(1,3)):
+        # 随机在 x、y 方向移动 -3~3 像素
+        # 并在每次小幅移动后暂停 0.05~0.2 秒，模拟人类手部动作
         actions.move_by_offset(random.randint(-3,3), random.randint(-3,3)).pause(random.uniform(0.05,0.2))
+    
+    # 执行上面定义的所有动作
     actions.perform()
+
+
 
 def human_like_typing(element, text):
     """逐字随机输入，模拟人工打字"""
