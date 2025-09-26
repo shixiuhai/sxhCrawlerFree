@@ -37,7 +37,6 @@ class DanmuReceiver:
             # 处理真实弹幕
             self.received_count += 1
             self.last_danmu_time = datetime.now()
-            
             # 构造响应数据
             result = {
                 'success': True,
@@ -48,12 +47,13 @@ class DanmuReceiver:
                     'level': data.get('level', 'unknown'),
                     'timestamp': data.get('timestamp', datetime.now().isoformat()),
                     'platform': data.get('platform', 'douyin'),
-                    'sequence': self.received_count
+                    'sequence': self.received_count,
+                    "streamerId": data.get("streamerId", "unknown"),
                 }
             }
             
             # 打印弹幕信息
-            log_msg = f"🎯 弹幕 #{self.received_count} | 👤 {data['username']} | 💬 {data['content']}"
+            log_msg = f"🎯 弹幕 #{self.received_count} | 👤 {data['username']} | 💬 {data['content']} | {data['streamerId']}"
             if data.get('level'):
                 log_msg += f" | ⭐ {data['level']}"
             
