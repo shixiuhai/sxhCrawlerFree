@@ -1,3 +1,80 @@
+"""
+1. S - 静态工具类
+javascript
+var S = {
+    get: function(e) { ... },
+    set: function(e, t, n, r, o, i) { ... },
+    getExpire: function(e, t, n) { ... }
+};
+特点：
+
+✅ 直接调用：S.get('cookieName')
+
+✅ 无需实例化：不需要 new S()
+
+✅ 无状态：方法不依赖实例属性
+
+✅ 工具函数：提供通用的Cookie操作能力
+
+使用方式：
+
+javascript
+// 直接调用静态方法
+var cookieValue = S.get('__mta');
+S.set('test', 'value', S.getExpire(7, 0, 0));
+2. N - 需要实例化的类
+javascript
+var N = function() {
+    function UserTracker() {
+        // 实例属性
+        this.uuid = null;
+        this.visit_id = null;
+        this.isFirstVisit = false;
+        // 初始化逻辑
+        this._setCookie();
+    }
+    
+    // 实例方法
+    UserTracker.prototype.getInfo = function() { ... };
+    UserTracker.prototype._setCookie = function() { ... };
+    
+    return UserTracker;
+}();
+特点：
+
+✅ 需要实例化：var tracker = new N()
+
+✅ 有状态：每个实例有自己的属性值
+
+✅ 有生命周期：构造函数中执行初始化逻辑
+
+✅ 业务逻辑：封装复杂的用户跟踪业务
+
+使用方式：
+
+javascript
+// 必须先创建实例
+var userTracker = new N();  // ← 必须用 new
+
+// 然后调用实例方法
+var userInfo = userTracker.getInfo();
+3. 两者的关系 - 依赖调用
+javascript
+// N 类内部依赖 S 工具类
+UserTracker.prototype._setCookie = function() {
+    // 使用静态工具类 S
+    var existingCookie = S.get(this._COOKIE_USER_TRACKING);  // ← 调用静态方法
+    var expireTime = S.getExpire(720, 0, 0);                // ← 调用静态方法
+    
+    if (existingCookie) {
+        // 更新逻辑...
+        S.set(this._COOKIE_USER_TRACKING, newValue, expireTime); // ← 调用静态方法
+    } else {
+        // 创建逻辑...
+        S.set(this._COOKIE_USER_TRACKING, initialValue, expireTime);
+    }
+};    
+"""
 def generate_mta_cookies():
     import random
     import string
