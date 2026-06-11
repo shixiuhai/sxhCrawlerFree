@@ -1,0 +1,15 @@
+{
+  "name": "vip_video_resolver",
+  "version": "1.0.0",
+  "description": "VIP视频解析工具 - im1907接口逆向分析",
+  "source": "im1907逆向分析",
+  "platforms": ["优酷", "爱奇艺", "腾讯视频", "芒果TV", "哔哩哔哩"],
+  "risk_level": "HIGH_RISK",
+  "key_findings": {
+    "token_algorithm": "双重MD5 + 日期派生",
+    "api_endpoint": "im1907.com 相关接口",
+    "js_analysis_file": "evidence/player_formatted.js (14712行)"
+  },
+  "dependencies": ["requests", "pyexecjs2"],
+  "note": "接口域名和token算法随时可能变更，建议自建解析服务"
+}

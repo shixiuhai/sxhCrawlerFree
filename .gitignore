@@ -13,3 +13,31 @@ push_video
 安卓逆向/app脱壳/frida_dump/frida-server-16.2.4-android-x86_64
 验证基于dressionPage实现百度扫码登录/extension/BHCHDCEJHOHFMIGJAFBAMPOGMAANBFKG_0_6_2_0
 验证基于dressionPage实现百度扫码登录/ceshi_baidu
+
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+*.pyc
+onnx_ort.cpython-38.pyc
+
+# 孤立残留文件
+last.png
+kuajing_detail.log
+
+# node_modules（各子目录的 node_modules 不进版本控制）
+*/node_modules/
+*/package-lock.json
+
+# 大型 JS 分析文件（本地保留，不提交）
+vip_video_resolver/evidence/*.js
+im1907_analysis/evidence/*.js
+
+# 临时文件
+*.log
+.env
+
+# IDE 配置
+.idea/
+.vscode/
+*.iml
