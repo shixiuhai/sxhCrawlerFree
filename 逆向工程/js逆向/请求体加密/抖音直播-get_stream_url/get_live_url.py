@@ -2,20 +2,34 @@
 """
 抖音直播 - 获取直播流播放地址
 
-抓包分析过程:
-  1. 打开 https://live.douyin.com/445761361541
-  2. Live 页面使用 React Server Components (RSC) 流式渲染
-  3. 所有数据通过 self.__pace_f.push() 嵌入在 HTML <script> 标签中
-  4. 推流数据存在于 RSC 组件 state 中，路径:
-     state → ... → stream_url → flv_pull_url (各清晰度FLV地址)
-                              → hls_pull_url_map (各清晰度HLS地址)
-  5. 另有 data JSON 结构: {"common":..., "data":{sd/hd/origin/ld/md/ao}}
-     - origin/or4: 原画 (1080p, 5-8Mbps)
-     - hd: 超清 (720p, 4Mbps) / sd: 高清 (720p, 2Mbps)
-     - ld: 流畅 (540p, 1Mbps) / md: 中等 (360p, 800Kbps)
-  6. FLV 地址验证: curl → HTTP 200, video/x-flv, 持续返回流数据
+功能:
+  - 获取指定直播间的 FLV/HLS 播放地址
+  - 支持所有清晰度: 原画/蓝光/超清/高清/流畅
+  - 地址直接可播放 (VLC/ffplay/浏览器)
 
-数据来源: SSR 直接渲染，非 XHR 请求
+数据来源:
+  直播流地址嵌入在页面 HTML 的 <script> 标签中
+  通过 React Server Components (RSC) 流式协议传输
+  数据路径: React state → stream_url → flv_pull_url
+  非传统 REST API, 无独立 XHR 请求
+
+防爬机制:
+  - URL 包含 expire 时间戳 (4-8小时过期)
+  - sign 参数为 MD5 签名
+  - t_id 为会话级 Token, 每次不同
+  - 地址动态生成, 不能缓存复用
+
+依赖:
+  pip install requests
+
+使用:
+  python get_live_url.py https://live.douyin.com/445761361541
+
+清晰度对照:
+  FULL_HD1 = 原画/蓝光 (1080p, ~7Mbps)
+  HD1      = 超清 (720p, ~4Mbps)
+  SD2      = 高清 (720p, ~2Mbps)
+  SD1      = 流畅 (540p, ~1Mbps)
 """
 
 import re
@@ -237,13 +251,11 @@ def display_streams(result):
 
 
 def main():
-    if len(sys.argv) < 2:
-        url = "https://live.douyin.com/445761361541"
-        print(f"用法: python {sys.argv[0]} <直播间URL>")
-        print(f"示例: python {sys.argv[0]} {url}\n")
-    else:
-        url = sys.argv[1]
+    if len(sys.argv) < 2 or sys.argv[1] in ("--help", "-h"):
+        print(__doc__)
+        return
 
+    url = sys.argv[1]
     result = get_live_streams(url)
     display_streams(result)
 
