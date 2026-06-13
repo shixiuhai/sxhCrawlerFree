@@ -251,11 +251,13 @@ def display_streams(result):
 
 
 def main():
-    if len(sys.argv) < 2 or sys.argv[1] in ("--help", "-h"):
-        print(__doc__)
-        return
+    if len(sys.argv) < 2:
+        url = "https://live.douyin.com/445761361541"
+        print(f"用法: python {sys.argv[0]} <直播间URL>")
+        print(f"示例: python {sys.argv[0]} {url}\n")
+    else:
+        url = sys.argv[1]
 
-    url = sys.argv[1]
     result = get_live_streams(url)
     display_streams(result)
 
