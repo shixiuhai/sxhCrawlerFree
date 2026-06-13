@@ -261,9 +261,9 @@ console.log(result.encSecKey); // encSecKey
          ↓
     XMLHttpRequest POST /weapi/xxx
          ↓
-    服务端解密验证 → 返回加密数据
+     服务端解密验证 → 返回加密数据
          ↓
-    前端解密渲染
+     前端解密渲染
 ```
 
 ---
