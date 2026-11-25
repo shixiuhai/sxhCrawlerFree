@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="never">
+    <meta name="viewport" content="width=device-width,initial-scale=1,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="https://api.map.baidu.com/res/webgl/10/bmap.css">
+    <title>文旅执法大脑</title>
+    <style>
+        html,
+        body,
+        #app {
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+            /* overflow: hidden; */
+        }
+    </style>
+    <link href="css/app.49d03eea.css" rel="preload" as="style">
+    <link href="css/chunk.element-ui.e245e5c6.css" rel="preload" as="style">
+    <link href="css/chunk.jiaminghi.3733c13d.css" rel="preload" as="style">
+    <link href="css/chunk.video.js.001a4ddc.css" rel="preload" as="style">
+    <link href="css/vendors-app.6dc57fe0.css" rel="preload" as="style">
+    <link href="js/app.dcae9c9b.js" rel="preload" as="script">
+    <link href="js/chunk.async-validator.7d8e149e.js" rel="preload" as="script">
+    <link href="js/chunk.axios.62b39a59.js" rel="preload" as="script">
+    <link href="js/chunk.babel-runtime.c6eab494.js" rel="preload" as="script">
+    <link href="js/chunk.babel.299ea28c.js" rel="preload" as="script">
+    <link href="js/chunk.buffer.48741124.js" rel="preload" as="script">
+    <link href="js/chunk.core-js.5e32599c.js" rel="preload" as="script">
+    <link href="js/chunk.echarts.ac2cb136.js" rel="preload" as="script">
+    <link href="js/chunk.element-ui.7414a079.js" rel="preload" as="script">
+    <link href="js/chunk.flv.js.52d4f0ea.js" rel="preload" as="script">
+    <link href="js/chunk.jiaminghi.5dc363f2.js" rel="preload" as="script">
+    <link href="js/chunk.lodash.b721f39f.js" rel="preload" as="script">
+    <link href="js/chunk.m3u8-parser.7acf0203.js" rel="preload" as="script">
+    <link href="js/chunk.moment.9be704ac.js" rel="preload" as="script">
+    <link href="js/chunk.mpd-parser.0329055e.js" rel="preload" as="script">
+    <link href="js/chunk.regenerator-runtime.59fa7da5.js" rel="preload" as="script">
+    <link href="js/chunk.resize-observer-polyfill.bccee26e.js" rel="preload" as="script">
+    <link href="js/chunk.svg-sprite-loader.09d4a0b8.js" rel="preload" as="script">
+    <link href="js/chunk.video.js.d64884bd.js" rel="preload" as="script">
+    <link href="js/chunk.videojs-contrib-hls.e31e2426.js" rel="preload" as="script">
+    <link href="js/chunk.videojs-contrib-media-sources.b21d8bbc.js" rel="preload" as="script">
+    <link href="js/chunk.videojs-vtt.js.91327d29.js" rel="preload" as="script">
+    <link href="js/chunk.videojs.c22b9152.js" rel="preload" as="script">
+    <link href="js/chunk.vue-router.8478eeec.js" rel="preload" as="script">
+    <link href="js/chunk.vue.a19247bb.js" rel="preload" as="script">
+    <link href="js/chunk.vuex.4ddb6028.js" rel="preload" as="script">
+    <link href="js/chunk.xmldom.0619ae22.js" rel="preload" as="script">
+    <link href="js/chunk.zrender.92cd5a3d.js" rel="preload" as="script">
+    <link href="js/vendors-app.107df505.js" rel="preload" as="script">
+    <link href="css/chunk.element-ui.e245e5c6.css" rel="stylesheet">
+    <link href="css/chunk.jiaminghi.3733c13d.css" rel="stylesheet">
+    <link href="css/chunk.video.js.001a4ddc.css" rel="stylesheet">
+    <link href="css/vendors-app.6dc57fe0.css" rel="stylesheet">
+    <link href="css/app.49d03eea.css" rel="stylesheet">
+</head>
+
+<body><noscript>&lt;strong&gt;We're sorry but weixin-manage doesn't work properly without JavaScript enabled. Please
+        enable it to continue.&lt;/strong&gt;</noscript>
+    <div id="app"></div>
+    <script src="http://api.map.baidu.com/api?v=3.0&amp;ak=2SErRV2hp5F7dfI2qvKaGZzkf57CidPN"></script>
+    <script type="text/javascript"
+        src="http://api.map.baidu.com/getscript?v=3.0&amp;ak=2SErRV2hp5F7dfI2qvKaGZzkf57CidPN&amp;services=&amp;t=20230105101157"></script>
+    <script src="//api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+    <script src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
+    <script src="js/chunk.async-validator.7d8e149e.js"></script>
+    <script src="js/chunk.axios.62b39a59.js"></script>
+    <script src="js/chunk.babel.299ea28c.js"></script>
+    <script src="js/chunk.babel-runtime.c6eab494.js"></script>
+    <script src="js/chunk.buffer.48741124.js"></script>
+    <script src="js/chunk.core-js.5e32599c.js"></script>
+    <script src="js/chunk.echarts.ac2cb136.js"></script>
+    <script src="js/chunk.element-ui.7414a079.js"></script>
+    <script src="js/chunk.flv.js.52d4f0ea.js"></script>
+    <script src="js/chunk.jiaminghi.5dc363f2.js"></script>
+    <script src="js/chunk.lodash.b721f39f.js"></script>
+    <script src="js/chunk.m3u8-parser.7acf0203.js"></script>
+    <script src="js/chunk.moment.9be704ac.js"></script>
+    <script src="js/chunk.mpd-parser.0329055e.js"></script>
+    <script src="js/chunk.regenerator-runtime.59fa7da5.js"></script>
+    <script src="js/chunk.resize-observer-polyfill.bccee26e.js"></script>
+    <script src="js/chunk.svg-sprite-loader.09d4a0b8.js"></script>
+    <script src="js/chunk.video.js.d64884bd.js"></script>
+    <script src="js/chunk.videojs.c22b9152.js"></script>
+    <script src="js/chunk.videojs-contrib-hls.e31e2426.js"></script>
+    <script src="js/chunk.videojs-contrib-media-sources.b21d8bbc.js"></script>
+    <script src="js/chunk.videojs-vtt.js.91327d29.js"></script>
+    <script src="js/chunk.vue.a19247bb.js"></script>
+    <script src="js/chunk.vue-router.8478eeec.js"></script>
+    <script src="js/chunk.vuex.4ddb6028.js"></script>
+    <script src="js/chunk.xmldom.0619ae22.js"></script>
+    <script src="js/chunk.zrender.92cd5a3d.js"></script>
+    <script src="js/vendors-app.107df505.js"></script>
+    <script src="js/app.dcae9c9b.js"></script>
+</body>
+
+</html>
